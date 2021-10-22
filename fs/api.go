@@ -432,7 +432,7 @@ type NodeReaddirer interface {
 // Mkdir is similar to Lookup, but must create a directory entry and Inode.
 // Default is to return EROFS.
 type NodeMkdirer interface {
-	Mkdir(ctx context.Context, name string, mode uint32, out *fuse.EntryOut) (*Inode, syscall.Errno)
+	Mkdir(ctx context.Context, name string, mode uint32, Umask uint32, out *fuse.EntryOut) (*Inode, syscall.Errno)
 }
 
 // Mknod is similar to Lookup, but must create a device entry and Inode.

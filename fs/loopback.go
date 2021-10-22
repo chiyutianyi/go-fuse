@@ -156,7 +156,7 @@ func (n *LoopbackNode) Mknod(ctx context.Context, name string, mode, rdev uint32
 	return ch, 0
 }
 
-func (n *LoopbackNode) Mkdir(ctx context.Context, name string, mode uint32, out *fuse.EntryOut) (*Inode, syscall.Errno) {
+func (n *LoopbackNode) Mkdir(ctx context.Context, name string, mode uint32, umask uint32, out *fuse.EntryOut) (*Inode, syscall.Errno) {
 	p := filepath.Join(n.path(), name)
 	err := os.Mkdir(p, os.FileMode(mode))
 	if err != nil {

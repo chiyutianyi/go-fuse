@@ -395,7 +395,7 @@ func (b *rawBridge) Mkdir(cancel <-chan struct{}, input *fuse.MkdirIn, name stri
 	var child *Inode
 	var errno syscall.Errno
 	if mops, ok := parent.ops.(NodeMkdirer); ok {
-		child, errno = mops.Mkdir(&fuse.Context{Caller: input.Caller, Cancel: cancel}, name, input.Mode, out)
+		child, errno = mops.Mkdir(&fuse.Context{Caller: input.Caller, Cancel: cancel}, name, input.Mode, input.Umask, out)
 	} else {
 		return fuse.ENOTSUP
 	}
